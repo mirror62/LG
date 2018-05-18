@@ -1,0 +1,16 @@
+{
+	"xiaohao": [{
+		"name": "pc广告",
+		"value": 4.23
+	}, {
+		"name": "app广告",
+		"value": 688.36
+	}],
+	"xiaohao2": [{
+		"name": "展示类型-PC-banner",
+		"value": 0
+	}, {
+		"name": "展示类型-APP-banner",
+		"value": 0.68
+	}]
+}

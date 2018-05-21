@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/report.css">
+    <!-- <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script> -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <!-- <script type="text/javascript" src="js/echarts.min.js"></script> -->
+    <script type="text/javascript" src="http://echarts.baidu.com/examples/vendors/echarts/echarts.min.js?_v_=1526486305040"></script>
+    <!-- <script type="text/javascript" src="js/time_report.js"></script> -->
+</head>
+
+<body>
+    <div class="navlayer">
+        <div class="nav">
+            <a href="javascript:history.back();" class="return"></a>
+            <h2>按时间统计dd</h2>
+        </div>
+    </div>
+    <div id="main"></div>
+    <script type="text/javascript">
+        $(function() {
+    loadCharts();
+});
+
+function loadCharts() {
+    var option = {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a}：<br/>{b}： ￥{c} (占{d}%)"
+        },
+        legend: {
+            top: 30,
+            orient: 'vertical',
+            x: 'left',
+            data: ["pc广告", "app广告", "展示类型-PC-banner", "展示类型-APP-banner"]
+        },
+        series: [{
+                name: '消耗',
+                type: 'pie',
+                selectedMode: 'single',
+                radius: [0, '60%'],
+                hoverAnimation: false,
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'inner'
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data: []
+            },
+            {
+                name: '消耗',
+                type: 'pie',
+                hoverAnimation: false,
+                radius: ['70%', '85%'],
+                data: [] //data: [{"name":"展示类型-PC-banner","value":0},{"name":"展示类型-APP-banner","value":0.68}]
+            }
+        ]
+    };
+
+    var chart = echarts.init(document.getElementById('main'));
+
+    chart.setOption(option);
+
+    //  ajax 调用
+
+    $.get('data.json').done(function(data) {
+        
+        // var myData = [];
+        // $.each(data.xiaohao, function(index, item) {
+        //     myData.push({
+        //         name: item.name,
+        //         value: item.value
+        //     });
+        // });
+        //  chart.setOption({
+        //     series: [{
+        //         data: myData
+        //     }]
+        // });
+        chart.setOption({
+           series: [{
+                data:data.xiaohao
+            },{
+                data:data.xiaohao
+            }]
+
+        });
+       
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+    </script>
+</body>
+
+</html>
